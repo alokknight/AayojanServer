@@ -11,7 +11,8 @@ const bodyParser = require('body-parser');
 app.use(morgan('dev'));
 // List of allowed origins
 const allowedOrigins = [
-    'https://aayojan.alokknight.com/',
+    'https://aayojan.alokknight.com',
+    'https://aayojan-jyww.onrender.com',
     'https://www.alokknight.com',
     'https://alokknight.github.io'
 ];

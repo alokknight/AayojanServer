@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 
 app.use(morgan('dev'));
 const corsOptions = {
-    origin: 'https://www.alokknight.com/aayojan', // Replace with your GitHub Pages URL
+    origin: 'https://www.alokknight.com', // Replace with your GitHub Pages URL
     optionsSuccessStatus: 200, // Some legacy browsers choke on 204
 };
 app.use(cors(corsOptions));

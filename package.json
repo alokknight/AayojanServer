@@ -7,7 +7,7 @@
     "start": "node index",
     "dev": "nodemon index"
   },
-  "author": "Prashant Kumar Gupta",
+  "author": "Alok Patel",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

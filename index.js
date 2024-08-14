@@ -9,7 +9,12 @@ const cors = require('cors'); // for req and res bw two different ports
 const bodyParser = require('body-parser');
 
 app.use(morgan('dev'));
-app.use(cors());
+const corsOptions = {
+    origin: 'https://www.alokknight.com/aayojan', // Replace with your GitHub Pages URL
+    optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+};
+app.use(cors(corsOptions));
+// app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json()); //A middleware extracts the entire body portion of an incoming request stream and exposes it on req.body.
 
@@ -23,7 +28,7 @@ app.use('/api/password', require('./routes/forgetpassword'))
 
 //Config Path
 dotenv.config({path: './config.env'});
-const port = process.env.PORT || 5000; 
+const port = process.env.PORT || 5000;
 // console.log(process.env.USER)
 // Connecting to DB via mongoose
 const url = process.env.MONGO_URI;

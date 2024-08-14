@@ -9,10 +9,26 @@ const cors = require('cors'); // for req and res bw two different ports
 const bodyParser = require('body-parser');
 
 app.use(morgan('dev'));
+// List of allowed origins
+const allowedOrigins = [
+    'https://aayojan.alokknight.com/',
+    'https://www.alokknight.com',
+    'https://alokknight.github.io'
+];
+
 const corsOptions = {
-    origin: 'https://www.alokknight.com', // Replace with your GitHub Pages URL
+    origin: function (origin, callback) {
+        // Check if the incoming origin is in the list of allowed origins
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+    credentials: true // If you need to handle cookies or authentication headers
 };
+
 app.use(cors(corsOptions));
 // app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));

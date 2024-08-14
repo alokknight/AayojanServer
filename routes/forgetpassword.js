@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const bcrypt = require('bcryptjs')
 const sendEmail = require('../utils.js/sendEmail');
 require('dotenv').config({path: './config.env'})
- 
+
 router.post('/forgot', async(req,res)=>{
     console.log(req.body)
     User.findOne({email: req.body.email})
@@ -30,10 +30,11 @@ router.post('/forgot', async(req,res)=>{
                     const userToken = new Token({
                         userID: user._id,
                         token: crypto.randomBytes(32).toString("hex")
-                    })  
+                    })
                     userToken.save()
                     console.log('token- ', userToken)
-                    const url = `${process.env.BASE_URL}password/reset/${user._id}/${userToken.token}`;
+                    const url = `https://aayojanserver.onrender.com/api/password/reset/${user._id}/${userToken.token}`;
+                    // const url = `${process.env.BASE_URL}password/reset/${user._id}/${userToken.token}`;
                     sendEmail(user.firstName, user.email, 'Reset Your Password', url)
                     .then(()=>{
                         console.log('email sent')

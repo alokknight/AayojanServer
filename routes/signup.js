@@ -44,7 +44,8 @@ router.post('/', (req, res, next) => {
                         });
                         token.save()
                         console.log(token.token)
-                        const url = `${process.env.BASE_URL}signup/${user._id}/verify/${token.token}`;
+                        const url = `https://aayojanserver.onrender.com/api/signup/${user._id}/verify/${token.token}`;
+                        // const url = `${process.env.BASE_URL}signup/${user._id}/verify/${token.token}`;
                         sendEmail(user.firstName, user.email, "Verify your account", url)
                         .then(()=>{
                             return res.status(201).json({
@@ -82,9 +83,9 @@ router.get("/:id/verify/:token", async(req,res)=>{
         const token = await Token.findOne({
             userID: user._id,
             token: req.params.token
-        }) 
-        if(!token) 
-            return res.status(400).json({ 
+        })
+        if(!token)
+            return res.status(400).json({
                 message: 'Invalid Link'
             })
         console.log("token -", token.token)

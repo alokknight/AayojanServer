@@ -14,6 +14,7 @@ const allowedOrigins = [
     'https://aayojan.alokknight.com',
     'https://aayojan-jyww.onrender.com',
     'https://www.alokknight.com',
+    'https://adarshlibrary.netlify.app',
     'https://alokknight.github.io'
 ];
 
